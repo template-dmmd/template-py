@@ -51,6 +51,9 @@ def update_copyright(owner: str) -> None:
                     fw.write(new_content)
 
 def update_repo(repo: str) -> None:
+    if repo == "none":
+        return
+
     subprocess.run(["git", "remote", "set-url", "origin", f"https://github.com/{repo}"])
     with open("README.md", "r") as fh:
         content = fh.read()
