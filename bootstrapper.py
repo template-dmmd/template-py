@@ -1,4 +1,4 @@
-# Copyright 2023 iiPythonx
+# Copyright 2023 iiPython
 
 # Modules
 import re
@@ -60,6 +60,13 @@ def update_repo(repo: str) -> None:
 def update_project_name(name: str) -> None:
     os.rename("template", name)
 
+def auto_push(option: str) -> None:
+    option = option.lower()
+    if option in ["yes", "y"]:
+        subprocess.run(["git", "add", "."])
+        subprocess.run(["git", "commit", "-m", "Update template options"])
+        subprocess.run(["git", "push"])
+
 # Handle configuration questions
 answers = []
 for question in [
@@ -76,6 +83,11 @@ for question in [
         "q": "Enter the new project name (python friendly).",
         "d": (-1, lambda v: v.split("/")[1]),
         "f": update_project_name
+    },
+    {
+        "q": "Would you like to commit these changes and push now?",
+        "d": "yes",
+        "f": auto_push
     }
 ]:
 
