@@ -64,11 +64,16 @@ def update_project_name(name: str) -> None:
     os.rename("template", name)
 
 def auto_push(option: str) -> None:
+    os.remove("bootstrapper.py")  # Remove here, rather then after we push
+
+    # Basic input validation
     option = option.lower()
-    if option in ["yes", "y"]:
-        subprocess.run(["git", "add", "."])
-        subprocess.run(["git", "commit", "-m", "Update template options"])
-        subprocess.run(["git", "push"])
+    if option not in ["yes", "y"]:
+        return
+
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "Update template options"])
+    subprocess.run(["git", "push"])
 
 # Handle configuration questions
 answers = []
@@ -105,8 +110,6 @@ for question in [
 
     # Perform action
     question["f"](result)
-
-os.remove("bootstrapper.py")
 
 # Process is done
 double_clear = term.up_double + term.clear_line
