@@ -84,7 +84,7 @@ for question in [
     },
     {
         "q": "Enter the new project name (python friendly).",
-        "d": (-1, lambda v: v.split("/")[1]),
+        "d": (-1, lambda v: v.split("/")[1] if "/" in v else "template"),
         "f": update_project_name
     },
     {
