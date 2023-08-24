@@ -25,4 +25,4 @@ python3 -m template
 
 ## License
 
-Licensed under the MIT license, see [here](https://github.com/template-dmmd/template-py/blob/main/README.md) for more information.
+Licensed under the MIT license, see [here](https://github.com/template-dmmd/template-py/blob/main/LICENSE.txt) for more information.
